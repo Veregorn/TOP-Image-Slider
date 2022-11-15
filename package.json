@@ -1,0 +1,24 @@
+{
+  "name": "top-image-slider",
+  "version": "1.0.0",
+  "description": "Image Slider using HTML, CSS and Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Veregorn/TOP-Image-Slider.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Veregorn/TOP-Image-Slider/issues"
+  },
+  "homepage": "https://github.com/Veregorn/TOP-Image-Slider#readme",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
