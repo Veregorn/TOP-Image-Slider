@@ -1,0 +1,25 @@
+#container {
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+    background-color: aqua;
+    overflow: hidden; /* That's the important part */
+    position: absolute;
+}
+
+@keyframes slider {
+    0% {left: 0px;}
+    25% {left: -800px;}
+    50% {left: -1600px;}
+    75% {left: -2400px;}
+    100% {left: 0px;}
+}
+
+#slider {
+    width: 3200px;
+    height: 500px;
+    background-color: aquamarine;
+    position: absolute;
+    animation: slider 20s 2s;
+    animation-iteration-count: infinite;
+}
