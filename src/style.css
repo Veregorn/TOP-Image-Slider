@@ -1,25 +1,36 @@
+body {
+    align-items: center; /* Align in y axis */
+    display: flex;
+    height: 100vh; /* Full screen */
+    justify-content: center; /* Align in x axis */
+}
+
+/* Animation */
+
+@keyframes scroll {
+    0% {transform: translateX(0);}
+    100% {transform: translateX(calc(-800px * 4))}
+}
+
+/* Styling */
+
 #container {
     width: 800px;
     height: 500px;
-    margin: 0 auto;
-    background-color: aqua;
+    margin: auto;
+    background-color: #eee;
     overflow: hidden; /* That's the important part */
-    position: absolute;
-}
-
-@keyframes slider {
-    0% {left: 0px;}
-    25% {left: -800px;}
-    50% {left: -1600px;}
-    75% {left: -2400px;}
-    100% {left: 0px;}
+    position: relative;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
 }
 
 #slider {
-    width: 3200px;
+    animation: scroll 20s linear infinite;
+    display: flex;
+    width: calc(800px * 4);
+}
+
+.slide {
     height: 500px;
-    background-color: aquamarine;
-    position: absolute;
-    animation: slider 20s 2s;
-    animation-iteration-count: infinite;
+    width: 800px;
 }
