@@ -12,6 +12,13 @@ body {
     100% {transform: translateX(calc(-800px * 4))}
 }
 
+@keyframes slider {
+    0% {transform: translateX(0);}
+    33% {transform: translateX(-800px);}
+    66% {transform: translateX(-1600px);}
+    100% {transform: translateX(-2400px);}
+}
+
 /* Styling */
 
 #container {
@@ -25,9 +32,16 @@ body {
 }
 
 #slider {
-    animation: scroll 20s linear infinite;
+    /* animation: slider 12s ease-in-out infinite; */
+    transition: left 3s;
     display: flex;
+    left: 0px;
     width: calc(800px * 4);
+    position: relative;
+}
+
+#slider.lefted {
+    left: -800px;
 }
 
 .slide {
