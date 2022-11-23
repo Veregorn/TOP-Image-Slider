@@ -62,7 +62,6 @@ const slide7 = createElementWithClass("div","slide");
 const slide8 = createElementWithClass("div","slide");
 
 // Place elements all inside others
-
 slide1.appendChild(img1);
 slide2.appendChild(img2);
 slide3.appendChild(img3);
@@ -81,7 +80,19 @@ slider.appendChild(slide6);
 slider.appendChild(slide7);
 slider.appendChild(slide8);
 
+// Create control buttons
+const nextButton = createElementWithId("div","next-button");
+const previousButton = createElementWithId("div","previous-button");
+const leftArrowIcon = new Image();
+const rightArrowIcon = new Image();
+leftArrowIcon.src = Previous;
+rightArrowIcon.src = Next;
+nextButton.appendChild(rightArrowIcon);
+previousButton.appendChild(leftArrowIcon);
+
 container.appendChild(slider);
+container.appendChild(nextButton);
+container.appendChild(previousButton);
 
 document.body.appendChild(container);
 
