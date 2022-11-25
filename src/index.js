@@ -96,14 +96,25 @@ container.appendChild(previousButton);
 
 document.body.appendChild(container);
 
+// Variable that saves slide position
+let currentPos = 0;
+
 // Translate the slides to the left
 function toNextSlide() {
     const sliderDiv = document.getElementById("slider");
-    sliderDiv.classList.add("lefted");
+    const position = currentPos - 800;
+    sliderDiv.style.transform = `translateX(${position}px)`;
+    currentPos -= 800;
 }
 
 // Translate the slides to the right
 function toPreviousSlide() {
     const sliderDiv = document.getElementById("slider");
-
+    const position = currentPos + 800;
+    sliderDiv.style.transform = `translateX(${position}px)`;
+    currentPos += 800;
 }
+
+// Adding Event Listeners to Next and Previous buttons
+rightArrowIcon.addEventListener("click", ()=> {toNextSlide()});
+leftArrowIcon.addEventListener("click", ()=> {toPreviousSlide()});

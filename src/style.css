@@ -7,9 +7,14 @@ body {
 
 /* Animation */
 
-@keyframes scroll {
+@keyframes left-scroll {
     0% {transform: translateX(0);}
-    100% {transform: translateX(calc(-800px * 4))}
+    100% {transform: translateX(-800px)}
+}
+
+@keyframes right-scroll {
+    0% {transform: translateX(0);}
+    100% {transform: translateX(800px)}
 }
 
 @keyframes slider {
@@ -33,17 +38,21 @@ body {
 
 #slider {
     /* animation: slider 12s ease-in-out infinite; */
-    transition: left 3s;
+    transition: transform 3s;
     display: flex;
-    left: 0px;
+    transform: translateX();
     width: calc(800px * 4);
     position: relative;
 }
-
+/*
 #slider.lefted {
     left: -800px;
 }
 
+#slider.righted {
+    right: 800px;
+}
+*/
 .slide {
     height: 500px;
     width: 800px;
