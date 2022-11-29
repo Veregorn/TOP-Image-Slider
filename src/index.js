@@ -52,67 +52,73 @@ img7.src = Purple;
 img8.src = Wall;
 
 const slide1 = createElementWithClass("div","slide");
+slide1.classList.add("active");
 const slide2 = createElementWithClass("div","slide");
 const slide3 = createElementWithClass("div","slide");
 const slide4 = createElementWithClass("div","slide");
-// We need to repeat the slides for the effect desired
-const slide5 = createElementWithClass("div","slide");
-const slide6 = createElementWithClass("div","slide");
-const slide7 = createElementWithClass("div","slide");
-const slide8 = createElementWithClass("div","slide");
 
 // Place elements all inside others
 slide1.appendChild(img1);
 slide2.appendChild(img2);
 slide3.appendChild(img3);
 slide4.appendChild(img4);
-slide5.appendChild(img5);
-slide6.appendChild(img6);
-slide7.appendChild(img7);
-slide8.appendChild(img8);
 
 slider.appendChild(slide1);
 slider.appendChild(slide2);
 slider.appendChild(slide3);
 slider.appendChild(slide4);
-slider.appendChild(slide5);
-slider.appendChild(slide6);
-slider.appendChild(slide7);
-slider.appendChild(slide8);
 
 // Create control buttons
-const nextButton = createElementWithId("div","next-button");
+const divControls = createElementWithId("div","controls");
 const previousButton = createElementWithId("div","previous-button");
+const nextButton = createElementWithId("div","next-button");
 const leftArrowIcon = new Image();
 const rightArrowIcon = new Image();
 leftArrowIcon.src = Previous;
 rightArrowIcon.src = Next;
-nextButton.appendChild(rightArrowIcon);
 previousButton.appendChild(leftArrowIcon);
+nextButton.appendChild(rightArrowIcon);
+divControls.appendChild(previousButton);
+divControls.appendChild(nextButton);
 
 container.appendChild(slider);
-container.appendChild(nextButton);
-container.appendChild(previousButton);
+container.appendChild(divControls);
 
 document.body.appendChild(container);
 
 // Variable that saves slide position
-let currentPos = 0;
+let index = 0;
+const slides = document.getElementById("slider").children;
 
-// Translate the slides to the left
-function toNextSlide() {
-    const sliderDiv = document.getElementById("slider");
-    const position = currentPos - 800;
-    sliderDiv.style.transform = `translateX(${position}px)`;
-    currentPos -= 800;
+// Change active slide
+function changeSlide() {
+    // First we need to remove class 'active' from all the slides
+    for (let i = 0; i < slides.length; i+=1) {
+        const element = slides[i];
+        element.classList.remove("active");
+    }
+    // Now we add the class to the active one
+    slides[index].classList.add("active");
 }
 
-// Translate the slides to the right
+// Move the index forward
+function toNextSlide() {
+    if (index === slides.length - 1) {
+        index = 0;
+    } else {
+        index += 1;
+    }
+    changeSlide();
+}
+
+// Move the index backward
 function toPreviousSlide() {
-    const sliderDiv = document.getElementById("slider");
-    const position = currentPos + 800;
-    sliderDiv.style.transform = `translateX(${position}px)`;
-    currentPos += 800;
+    if (index === 0) {
+        index = slides.length - 1;
+    } else {
+        index -= 1;
+    }
+    changeSlide();
 }
 
 // Adding Event Listeners to Next and Previous buttons

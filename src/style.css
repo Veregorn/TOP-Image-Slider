@@ -3,25 +3,31 @@ body {
     display: flex;
     height: 100vh; /* Full screen */
     justify-content: center; /* Align in x axis */
+    overflow: hidden;
 }
 
 /* Animation */
 
-@keyframes left-scroll {
-    0% {transform: translateX(0);}
-    100% {transform: translateX(-800px)}
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-@keyframes right-scroll {
-    0% {transform: translateX(0);}
-    100% {transform: translateX(800px)}
-}
-
-@keyframes slider {
-    0% {transform: translateX(0);}
-    33% {transform: translateX(-800px);}
-    66% {transform: translateX(-1600px);}
-    100% {transform: translateX(-2400px);}
+@keyframes slide {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-800px);
+    }
 }
 
 /* Styling */
@@ -37,41 +43,45 @@ body {
 }
 
 #slider {
-    /* animation: slider 12s ease-in-out infinite; */
-    transition: transform 3s;
-    display: flex;
-    transform: translateX();
-    width: calc(800px * 4);
+    width: 100%;
+    height: 100%;
     position: relative;
 }
-/*
-#slider.lefted {
-    left: -800px;
+
+.slide {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: none;
+    z-index: 1;
+    animation: slide 2s ease;
 }
 
-#slider.righted {
-    right: 800px;
-}
-*/
-.slide {
-    height: 500px;
-    width: 800px;
+.slide.active {
+    display: flex;
+    animation: appear 2s ease;
 }
 
 #next-button, #previous-button {
     position: absolute;
-    top: 226px;
-    z-index: 200;
+    top: 50%; /* To locate them in the middle */
+    margin-top: -24px; /* Need to sub half of the height */
+    z-index: 2;
     width: 48px;
     height: 48px;
     background-color: #fff;
     border-radius: 50%;
+    cursor: pointer;
+}
+
+#next-button:hover, #previous-button:hover {
+    background-color: crimson;
 }
 
 #previous-button {
-    left: 20px;
+    left: 5%;
 }
 
 #next-button {
-    left: 730px;
+    right: 5%;
 }
