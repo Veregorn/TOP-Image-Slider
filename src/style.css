@@ -19,17 +19,6 @@ body {
     }
 }
 
-@keyframes slide {
-    0% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateX(-800px);
-    }
-}
-
 /* Styling */
 
 #container {
@@ -54,7 +43,7 @@ body {
     position: absolute;
     display: none;
     z-index: 1;
-    animation: slide 2s ease;
+    /* animation: slide 2s ease; */
 }
 
 .slide.active {
@@ -84,4 +73,35 @@ body {
 
 #next-button {
     right: 5%;
+}
+
+#circles {
+    position: absolute;
+    left: 50%;
+    margin-left: -70px;
+    bottom: 10%;
+    display: flex;
+    gap: 20px;
+    z-index: 3;
+}
+
+.circle {
+    color: #fff;
+    background-color: #000;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    justify-content: space-between;
+    cursor: pointer;
+    padding-left: 2px;
+}
+
+.circle:hover {
+    color: crimson;
+}
+
+.circle.active {
+    color: crimson;
 }

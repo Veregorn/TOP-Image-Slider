@@ -81,13 +81,19 @@ nextButton.appendChild(rightArrowIcon);
 divControls.appendChild(previousButton);
 divControls.appendChild(nextButton);
 
+// Create indicator circles
+const indicatorCircles = createElementWithId("div","circles");
+
 container.appendChild(slider);
 container.appendChild(divControls);
+container.appendChild(indicatorCircles);
 
 document.body.appendChild(container);
 
 // Variable that saves slide position
 let index = 0;
+
+// Save the slides in an array
 const slides = document.getElementById("slider").children;
 
 // Change active slide
@@ -124,3 +130,15 @@ function toPreviousSlide() {
 // Adding Event Listeners to Next and Previous buttons
 rightArrowIcon.addEventListener("click", ()=> {toNextSlide()});
 leftArrowIcon.addEventListener("click", ()=> {toPreviousSlide()});
+
+// Create circles for each slides array element
+function createCircles() {
+    for (let i = 0; i < slides.length; i+=1) {
+        const element = createElementWithClass("div","circle");
+        element.innerHTML = i + 1;
+        indicatorCircles.appendChild(element);
+    }
+}
+
+// Call above function
+createCircles();
