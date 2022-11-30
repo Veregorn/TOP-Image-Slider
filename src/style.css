@@ -105,3 +105,10 @@ body {
 .circle.active {
     color: crimson;
 }
+
+/* Responsive */
+@media(max-width: 800px) {
+    #controls {
+        display: none;
+    }
+}
