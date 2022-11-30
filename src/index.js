@@ -146,9 +146,31 @@ function toPreviousSlide() {
     updateCirclesActive();
 }
 
+// Function that changes slide automatically after 5 seconds
+function autoPlay() {
+    toNextSlide();
+}
+
+// Call the function every 5 seconds
+let timer = setInterval(autoPlay,5000);
+
+// Function that reset the timer when a manual action happens
+function resetTimer() {
+    // Reset it
+    clearInterval(timer);
+    // And reassign it
+    timer = setInterval(autoPlay,5000);
+}
+
 // Adding Event Listeners to Next and Previous buttons
-rightArrowIcon.addEventListener("click", ()=> {toNextSlide()});
-leftArrowIcon.addEventListener("click", ()=> {toPreviousSlide()});
+rightArrowIcon.addEventListener("click", ()=> {
+    toNextSlide();
+    resetTimer();
+});
+leftArrowIcon.addEventListener("click", ()=> {
+    toPreviousSlide();
+    resetTimer();
+});
 
 // Create circles for each slides array element
 function createCircles() {
@@ -164,6 +186,7 @@ function createCircles() {
             updateIndex(i);
             changeSlide();
             updateCirclesActive();
+            resetTimer();
         });
 
         indicatorCircles.appendChild(element);
