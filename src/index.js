@@ -93,6 +93,11 @@ document.body.appendChild(container);
 // Variable that saves slide position
 let index = 0;
 
+// This function update the index value
+function updateIndex(newValue) {
+    index = newValue;
+}
+
 // Save the slides in an array
 const slides = document.getElementById("slider").children;
 
@@ -110,9 +115,9 @@ function changeSlide() {
 // Move the index forward
 function toNextSlide() {
     if (index === slides.length - 1) {
-        index = 0;
+        updateIndex(0);
     } else {
-        index += 1;
+        updateIndex(index+=1);
     }
     changeSlide();
 }
@@ -120,9 +125,9 @@ function toNextSlide() {
 // Move the index backward
 function toPreviousSlide() {
     if (index === 0) {
-        index = slides.length - 1;
+        updateIndex(slides.length - 1);
     } else {
-        index -= 1;
+        updateIndex(index-=1);
     }
     changeSlide();
 }
@@ -136,6 +141,12 @@ function createCircles() {
     for (let i = 0; i < slides.length; i+=1) {
         const element = createElementWithClass("div","circle");
         element.innerHTML = i + 1;
+        // Here we add functionality to each button
+        element.addEventListener("click", ()=> {
+            updateIndex(i);
+            changeSlide();
+        });
+
         indicatorCircles.appendChild(element);
     }
 }
