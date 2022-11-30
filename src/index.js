@@ -101,6 +101,18 @@ function updateIndex(newValue) {
 // Save the slides in an array
 const slides = document.getElementById("slider").children;
 
+// Change color number in numbered buttons
+function updateCirclesActive() {
+    const circlesArray = indicatorCircles.children;
+    // Remove class 'active' from all
+    for (let i = 0; i < circlesArray.length; i+=1) {
+        const element = circlesArray[i];
+        element.classList.remove("active");
+    }
+    // Now update the selected one
+    circlesArray[index].classList.add("active");
+}
+
 // Change active slide
 function changeSlide() {
     // First we need to remove class 'active' from all the slides
@@ -120,6 +132,7 @@ function toNextSlide() {
         updateIndex(index+=1);
     }
     changeSlide();
+    updateCirclesActive();
 }
 
 // Move the index backward
@@ -130,6 +143,7 @@ function toPreviousSlide() {
         updateIndex(index-=1);
     }
     changeSlide();
+    updateCirclesActive();
 }
 
 // Adding Event Listeners to Next and Previous buttons
@@ -141,10 +155,15 @@ function createCircles() {
     for (let i = 0; i < slides.length; i+=1) {
         const element = createElementWithClass("div","circle");
         element.innerHTML = i + 1;
+        // Adding the class 'active' only to the first element
+        if (i === 0) {
+            element.classList.add("active");
+        }
         // Here we add functionality to each button
         element.addEventListener("click", ()=> {
             updateIndex(i);
             changeSlide();
+            updateCirclesActive();
         });
 
         indicatorCircles.appendChild(element);
